@@ -1,51 +1,66 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, SafeAreaView, Image, NativeModules, TextInput, Button, TouchableOpacity} from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  NativeModules,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 
 import Global from "../config/GlobalStyle";
 import Colors from "../config/Colors";
 
-const {StatusBarManager} = NativeModules;
-
-function LoginScreen(props) {
-
+const LoginScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={[Global.container, styles.landing]}>
-      <StatusBar style="light" />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <SafeAreaView style={[Global.container, styles.landing]}>
+        <StatusBar style="light" />
 
-      <Image 
-        style={styles.logo}
-        source={require('../assets/logo.png')} 
-      />
+        <Image style={styles.logo} source={require("../assets/logo.png")} />
 
-      <View style={styles.loginSection}>
-        <Text style={[Global.text, styles.loginText]}>Login</Text>
+        <View style={styles.loginSection}>
+          <Text style={[Global.text, styles.loginText]}>Login</Text>
 
-        <Text style={[Global.text, styles.pleaseText]}>Please sign in to continue</Text>
+          <Text style={[Global.text, styles.pleaseText]}>
+            Please sign in to continue
+          </Text>
 
-        <Text style={[Global.text, Global.inputHeader, styles.usernameHeader]}>Username</Text>
-        <TextInput placeholder="Type username" style={Global.inputField}/>
+          <Text
+            style={[Global.text, Global.inputHeader, styles.usernameHeader]}
+          >
+            Username
+          </Text>
+          <TextInput placeholder="Type username" style={Global.inputField} />
 
+          <Text style={[Global.text, Global.inputHeader]}>Password</Text>
 
-        <Text style={[Global.text, Global.inputHeader,]}>Password</Text>
+          <View style={styles.password_Cont}>
+            <TextInput
+              secureTextEntry={true}
+              placeholder="********"
+              style={[Global.inputField, styles.passInput]}
+            />
 
-        <View style={styles.password_Cont}>
-          <TextInput placeholder="********" style={[Global.inputField, styles.passInput]}/>
+            <TouchableOpacity style={styles.forgotBtn}>
+              <Text style={[Global.text, styles.forgotTxt]}>Forgot ?</Text>
+            </TouchableOpacity>
+          </View>
 
-          <TouchableOpacity style={styles.forgotBtn}>
-            <Text style={[Global.text, styles.forgotTxt]}>Forgot ?</Text>
+          <TouchableOpacity 
+          style={[Global.button, styles.loginBtn]}
+          onPress={() => navigation.navigate('SecondScreen')}>
+            <Text style={[styles.loginBtnTxt]}>Login</Text>
           </TouchableOpacity>
         </View>
-
-        <TouchableOpacity style={[Global.button, styles.loginBtn]}>
-            <Text style={[styles.loginBtnTxt]}>Login</Text>
-        </TouchableOpacity>
-
-      </View>
-
-      
-      
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -91,6 +106,7 @@ const styles = StyleSheet.create({
   },
   forgotTxt: {
     fontFamily: "poppins-med",
+    paddingHorizontal: 2,
   },
   loginBtn: {
     backgroundColor: Colors.gold,
@@ -101,7 +117,6 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-bold",
     paddingHorizontal: 20,
   },
-  
 });
 
 export default LoginScreen;
