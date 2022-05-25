@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // screens
 import LoginScreen from "./app/screens/LoginScreen";
 import SecondScreen from "./app/screens/SecondScreen";
+import TabViewScreen from "./app/screens/TabViewScreen";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +35,8 @@ const MyStack = () => {
           component={LoginScreen}
         />
         <Stack.Screen name="SecondScreen" component={SecondScreen} />
+        <Stack.Screen name="TabViewScreen" component={TabViewScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

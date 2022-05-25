@@ -17,6 +17,11 @@ export default StyleSheet.create({
     fontSize: 14,
     fontFamily: "poppins",
   },
+  bigHeader: {
+    fontSize: 30,
+    color: Colors.gold,
+    fontFamily: "poppins-bold",
+  },
   inputHeader: {
     color: Colors.white,
     fontFamily: "poppins-med",

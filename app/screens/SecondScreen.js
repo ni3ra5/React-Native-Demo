@@ -1,41 +1,54 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, SafeAreaView, Image, NativeModules, TextInput, Button, TouchableOpacity, TouchableWithoutFeedback, Keyboard} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 
 import Global from "../config/GlobalStyle";
 import Colors from "../config/Colors";
 
-function SecondScreen(props) {
-
+const SecondScreen = ({ navigation }) => {
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-    <SafeAreaView style={[Global.container, styles.landing]}>
+    <SafeAreaView style={[Global.container, styles.container]}>
       <StatusBar style="auto" />
-      
 
-      <View style={styles.loginSection}>
-        <Text style={[Global.text, styles.loginText]}>2nd screen</Text>
-      </View>
+      <Text style={[Global.text, Global.bigHeader, styles.bigHeader]}>Scroll view</Text>
 
-      
-      
+      <ScrollView>
+        <Text onPress={() => navigation.navigate('TabViewScreen')} style={[styles.item]}>Tab view </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+        <Text style={[styles.item]}>Item </Text>
+      </ScrollView>
     </SafeAreaView>
-    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-    loginSection: {
-    marginTop: 100,
-    width: "100%",
-    alignItems: "flex-start",
+  container: {
+    padding: 0,
+    
   },
-  loginText: {
-    fontSize: 30,
+  item: {
+    fontSize: 20,
+    backgroundColor: Colors.bg_black,
     color: Colors.gold,
-    fontFamily: "poppins-bold",
+    padding: 30,
+    marginHorizontal: 20,
+    marginVertical: 5,
+    borderRadius: 10,
   },
-  
+  'item:first-child': {
+    backgroundColor: "red",
+    marginBottom: 50,
+  },
+  bigHeader: {
+    marginLeft: 20,
+  }
 });
 
 export default SecondScreen;
